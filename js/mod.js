@@ -19,9 +19,9 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.000: Literally Nothing</h3><br>
-		- Started work on this project.
+		- Started work on this project.<br>
 	<h3>v0.001: At least the name is correct!</h3><br>
-		- Set the name of the game and the points.`
+		- Set the name of the game and the points.<br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
