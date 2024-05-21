@@ -13,11 +13,13 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.002",
-	name: "The Qi is Here",
+	num: "0.003",
+	name: "More Qi is Here",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.003: More Qi is Here</h3><br>
+		- Added another upgrade. I probably shouldn't be advancing versions this frequently.<br>
 	<h3>v0.002: The Qi is Here</h3><br>
 		- Added 1 upgrade.<br>
 	<h3>v0.001: At least the name is correct!</h3><br>
@@ -47,6 +49,7 @@ function getPointGen() {
 
 	let gain = new Decimal(0)
 	if (hasUpgrade("d",11)) gain = new Decimal(1)
+	if (hasUpgrade("d",12)) gain = gain.times(3)
 	return gain
 }
 

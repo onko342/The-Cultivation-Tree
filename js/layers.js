@@ -32,6 +32,13 @@ addLayer("d", {
             cost: new Decimal(1),
             unlocked() {return player[this.layer].unlocked},
             tooltip: "Qi Condensation Stage 1",
+        },
+        12: {
+            title: "Faster Flow",
+            description: "Try to absorb Qi faster. Double it, no, actually triple Qi gain.",
+            cost: new Decimal(20),
+            unlocked() {return hasUpgrade("d",11)},
+            tooltip: "Qi Condensation Stage 2",
         }
     }
 })
