@@ -1,6 +1,8 @@
-# The-Modding-Tree
+# The-Cultivation-Tree
 
-An incremental game engine based on The Prestige Tree. It still requires programming knowledge, but it's mostly pretty easy things and copy/pasting.
+A TMT mod based around cultivation (xianxia). Just started an in no way close to finished
+
+Stuff below for my future reference
 
 [Look here for a tutorial on getting started with modding with TMT](docs/tutorials/getting-started.md)
 
