@@ -2,26 +2,28 @@ let modInfo = {
 	name: "The Cultivation Tree",
 	id: "heavenly dao",
 	author: "onko342",
-	pointsName: "Spiritual Energy",
+	pointsName: "Spirit Qi",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (1), // Used for hard resets and new players
 	offlineLimit: new Decimal ("1.8e308"),  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.001",
-	name: "At least the name is correct!",
+	num: "0.002",
+	name: "The Qi is Here",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.000: Literally Nothing</h3><br>
-		- Started work on this project.<br>
+	<h3>v0.002: The Qi is Here</h3><br>
+		- Added 1 upgrade.<br>
 	<h3>v0.001: At least the name is correct!</h3><br>
-		- Set the name of the game and the points.<br>`
+		- Set the name of the game and the points.<br>
+	<h3>v0.000: Literally Nothing</h3><br>
+		- Started work on this project.<br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -43,7 +45,8 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	let gain = new Decimal(0)
+	if (hasUpgrade("d",11)) gain = new Decimal(1)
 	return gain
 }
 
