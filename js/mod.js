@@ -13,11 +13,13 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.003",
-	name: "More Qi is Here",
+	num: "0.004",
+	name: "Even More Qi is Here",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+	<h3>v0.004: Even More Qi is Here</h3><br>
+		- 3 more upgrades, all dealing with getting more Spirit Qi. Gain is still relatively low though.<br>
 	<h3>v0.003: More Qi is Here</h3><br>
 		- Added another upgrade. I probably shouldn't be advancing versions this frequently.<br>
 	<h3>v0.002: The Qi is Here</h3><br>
@@ -49,7 +51,11 @@ function getPointGen() {
 
 	let gain = new Decimal(0)
 	if (hasUpgrade("d",11)) gain = new Decimal(1)
-	if (hasUpgrade("d",12)) gain = gain.times(3)
+	if (hasUpgrade("d",12)) gain = gain.plus(2)
+	if (hasUpgrade("d",13)) gain = gain.plus(3)
+	if (hasUpgrade("d",14)) gain = gain.times(upgradeEffect("d",14))
+	if (hasUpgrade("d",15)) gain = gain.times(upgradeEffect("d",15))
+	if (hasUpgrade("d",16)) gain = gain.times(upgradeEffect("d",16))
 	return gain
 }
 

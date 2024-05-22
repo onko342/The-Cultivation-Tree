@@ -5,6 +5,7 @@ addLayer("d", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+        best: new Decimal(0),
     }},
     color: "#9c3c13",
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
@@ -34,11 +35,54 @@ addLayer("d", {
             tooltip: "Qi Condensation Stage 1",
         },
         12: {
-            title: "Faster Flow",
-            description: "Try to absorb Qi faster. Double it, no, actually triple Qi gain.",
+            title: "Steady Flow",
+            description: "Try to absorb Qi faster. Double it, no, actually triple Qi gain. +2 to base Qi gain",
             cost: new Decimal(20),
             unlocked() {return hasUpgrade("d",11)},
             tooltip: "Qi Condensation Stage 2",
+        },
+        13: {
+            title: "Faster Flow",
+            description: "Ramp that Qi gain more! +3 to base Qi gain.",
+            cost: new Decimal(50),
+            unlocked() {return hasUpgrade("d",11)},
+            tooltip: "Qi Condensation Stage 3",
+        },
+        14: {
+            title: "Compacted Reserves",
+            description: "Having dense Qi makes accepting more Qi easier. Boost Spirit Qi gain based on Density.",
+            cost: new Decimal(100),
+            unlocked() {return hasUpgrade("d",11)},
+            tooltip: "Qi Condensation Stage 4",
+            effect() {
+                let eff = player[this.layer].points.add(5).log(5)//5 is a placeholder, later upgrades may change this
+                return eff
+            },
+            effectDisplay() {return format(this.effect())+"x"},
+        },
+        15: {
+            title: "Qi Well",
+            description: "Your Qi attracts itself. Boost Spirit Qi based on itself.",
+            cost: new Decimal(300),
+            unlocked() {return hasUpgrade("d",11)},
+            tooltip: "Qi Condensation Stage 5",
+            effect() {
+                let eff = player.points.add(3).log(3)
+                return eff
+            },
+            effectDisplay() {return format(this.effect())+"x"},
+        },
+        16: {
+            title: "Qi Memory",
+            description: "Even if your density decreases momentarily, your Qi will still remember some of the impact. Boost Spirit Qi gain based on max Density.",
+            cost: new Decimal(600),
+            unlocked() {return hasUpgrade("d",11)},
+            tooltip: "Qi Condensation Stage 6",
+            effect() {
+                let eff = player[this.layer].best.add(7).log(7)
+                return eff
+            },
+            effectDisplay() {return format(this.effect())+"x"},
         }
     }
 })
