@@ -26,6 +26,14 @@ addLayer("d", {
         {key: "d", description: "D: Condense Qi to earn Density", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
+    infoboxes:{
+        info:{
+            title: "Welcome to Cultivation! Or not.",
+            titleStyle: "'color': '#9c3c13'",
+            body: "Congrats on absorbing your first bit of qi and entering the ranks of cultivators! (Ignore this if you have improved the purity of your qi)<br><br>Anyways, this realm is called Qi Condensation. In this realm, you will aim to make your Qi as dense as possible. Remember, cultivation is often a tediuouGood luck!<br><br>Oh and if you haven't purified your Qi, do so as soon as possible. Condensin and purifying Qi at the same time has multiple benefits.",
+            bodyStyle: {'background-color': "#9c3c13"},
+        },
+    },
     upgrades: {
         11: {
             title: "Qi Condensation",
@@ -84,5 +92,5 @@ addLayer("d", {
             },
             effectDisplay() {return format(this.effect())+"x"},
         }
-    }
+    },
 })
