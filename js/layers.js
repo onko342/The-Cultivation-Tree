@@ -6,9 +6,16 @@ addLayer("d", {
         unlocked: true,
 		points: new Decimal(0),
         best: new Decimal(0),
+        unlockOrder: new Decimal(0),
     }},
+    increaseUnlockOrder: ["p"],
     color: "#9c3c13",
-    requires: new Decimal(1), // Can be a function that takes requirement increases into account
+    requires()
+    {
+        req = new Decimal(1)
+        if (player[this.layer].unlockOrder.equals(new Decimal(1))) req.mul(100000)
+        return req
+    }, // Can be a function that takes requirement increases into account
     resource: "density", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -25,7 +32,9 @@ addLayer("d", {
     hotkeys: [
         {key: "d", description: "D: Condense Qi to earn Density", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true},
+    layerShown(){
+        return player.points.gte(player[this.layer].unlockOrder.times(new Decimal("1e5")))
+    },
     infoboxes:{
         info:{
             title: "Welcome to Cultivation! Or not.",
@@ -91,6 +100,55 @@ addLayer("d", {
                 return eff
             },
             effectDisplay() {return format(this.effect())+"x"},
-        }
+        },
+    },
+}),
+addLayer("p", {
+    name: "purity", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 1, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+        best: new Decimal(0),
+        unlockOrder: new Decimal(0),
+    }},
+    increaseUnlockOrder: ["d"],
+    color: "#75caff",
+    requires()
+    {
+        req = new Decimal(1)
+        if (player[this.layer].unlockOrder.equals(new Decimal(1))) req.mul(100000)
+        return req
+    }, // Can be a function that takes requirement increases into account
+    resource: "purity", // Name of prestige currency
+    baseResource: "points", // Name of resource prestige is based on
+    baseAmount() {return player.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.5, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 0, // Row the layer is in on the tree (0 is the first row)
+    hotkeys: [
+        {key: "p", description: "P: Refine Qi to gain Purity", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+    layerShown(){
+        return player.points.gte(player[this.layer].unlockOrder.times(new Decimal("1e5")))
+    },
+    infoboxes:{
+        info:{
+            title: "Welcome to Cultivation! Or not.",
+            titleStyle: "'color': '#75caff'",
+            body: "Congrats on absorbing your first bit of qi and entering the ranks of cultivators! (Ignore this if you have improved the density of your qi)<br><br>Anyways, this realm is called Qi Refining. In this realm, you will aim to make your Qi as pure as possible. Remember, cultivation is often a tediuouGood luck!<br><br>Oh and if you haven't condensed your Qi, do so as soon as possible. Condensing and purifying Qi at the same time has multiple benefits.",
+            bodyStyle: {'background-color': "#75caff"},
+        },
+    },
+    upgrades: {
+        
     },
 })
